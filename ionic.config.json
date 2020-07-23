@@ -1,0 +1,7 @@
+{
+  "name": "chat-io",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
