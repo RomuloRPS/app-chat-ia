@@ -1,20 +1,39 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Chat.io
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+  <ng-container *ngFor="let message of messages">
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <ion-card mode="ios" *ngIf="message.author == 'bot'" style="max-width: 70vw; float: left; padding: 10px;">
+          <ion-text >{{message.message}}</ion-text>
+        </ion-card>
+    
+        <ion-card mode="ios" *ngIf="message.author == 'me'" style="max-width: 70vw; float: right; padding: 10px;">
+          <ion-text>{{message.message}}</ion-text>
+        </ion-card>
+      </ion-col>
+      
+    </ion-row>
+    
+  </ng-container>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+ 
+    <ion-item color="light" lines="none">
+      <ion-textarea [(ngModel)]="messageText"   type="text" placeholder="Digite uma mensagem"></ion-textarea>
+      <ion-buttons slot="end">
+        <ion-button (click)="send()" color="primary">
+          <ion-icon name="send"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
